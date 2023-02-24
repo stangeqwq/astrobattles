@@ -1,0 +1,61 @@
+body {
+  background-image: url(assets/space.gif);
+}
+.btn-group button { 
+  background-color: #04AA6D; 
+  border: 2px solid green; 
+  font-size: 30px;
+  font-family: monospace;
+  color: white;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  cursor: pointer;
+  display: block;
+  width: 70%;
+  margin-left: 15%;
+}
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+.title {
+  color: green;
+  -webkit-text-stroke: 2px white;
+  font-size: 70px;
+  text-align: center;
+  font-family: monospace;
+}
+.creator {
+  color: rgb(22, 185, 126);
+  font-size: 20px;
+  text-align: center;
+  font-family: monospace;
+}
+#player {
+  width: 70px;
+  /*border: 2px solid red;
+  margin: auto;*/
+}
+#game-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /*border: 2px solid red; */
+}
+#soon {
+  color: green;
+  -webkit-text-stroke: 2px white;
+  font-size: 70px;
+  text-align: center;
+  font-family: monospace;
+}
+#game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
