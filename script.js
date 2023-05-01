@@ -12,6 +12,7 @@ function Settings() {
   Difficulty (easy, medium, hard, insane) buttons
   Music (analog control)
   */
+  //github commit test
 }
 function Scoreboard() {
   document.getElementById("homemenu").remove();
