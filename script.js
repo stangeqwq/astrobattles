@@ -152,12 +152,5 @@ function shoot() {
     bullet.setAttribute("x", player.getAttribute("x"));
     bullet.setAttribute("y", player.getAttribute("y"));
     body.appendChild(bullet);
-    bullet.addEventListener("click", function() {
-      bullet.remove();
-      space.pause();
-      space.currentTime = 0;
-      space.play();
-    });
-
 }
 
