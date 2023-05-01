@@ -12,7 +12,6 @@ function Settings() {
   Difficulty (easy, medium, hard, insane) buttons
   Music (analog control)
   */
-  //github commit test
 }
 function Scoreboard() {
   document.getElementById("homemenu").remove();
@@ -142,6 +141,23 @@ function gameOverfunc() {
   document.removeEventListener("keyup", keyupHandler);
 }
 function shoot() {
-    /* write some code that shoots */
+    /* to create a shoot function, we need to a new css element to be generated with id "bullet" that 
+    would have some movement speed going in the direction "forward" of the "player" id element
+     */
+    const bullet = document.createElement("img");
+    bullet.setAttribute("id", "bullet");
+    bullet.setAttribute("src", "assets/bullet.png");
+    bullet.setAttribute("width", "10");
+    bullet.setAttribute("height", "10");
+    bullet.setAttribute("x", player.getAttribute("x"));
+    bullet.setAttribute("y", player.getAttribute("y"));
+    body.appendChild(bullet);
+    bullet.addEventListener("click", function() {
+      bullet.remove();
+      space.pause();
+      space.currentTime = 0;
+      space.play();
+    });
+
 }
 
