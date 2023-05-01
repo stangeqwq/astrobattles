@@ -141,9 +141,16 @@ function gameOverfunc() {
   document.removeEventListener("keyup", keyupHandler);
 }
 function shoot() {
-    /* to create a shoot function, we need to a new css element to be generated with id "bullet" that 
-    would have some movement speed going in the direction "forward" of the "player" id element
-     */
+  /* to create a shoot function, we need to a new css element to be generated with id "bullet" that 
+  would have some movement speed going in the direction "forward" of the "player" id element
+   */
+  //the code below occurs whenever the player presses "w" keyup
+  document.addEventListener("keyup", function(event) {
+    if (event.key === "w") {
+      bullet();
+    }
+  });
+  function bullet(){
     const bullet = document.createElement("img");
     bullet.setAttribute("id", "bullet");
     bullet.setAttribute("src", "assets/bullet.png");
@@ -152,5 +159,6 @@ function shoot() {
     bullet.setAttribute("x", player.getAttribute("x"));
     bullet.setAttribute("y", player.getAttribute("y"));
     body.appendChild(bullet);
+  }
 }
 
