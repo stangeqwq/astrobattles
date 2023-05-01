@@ -153,7 +153,7 @@ function shoot() {
   function bullet(){
     const bullet = document.createElement("img");
     bullet.setAttribute("id", "bullet");
-    bullet.setAttribute("src", "assets/bullet.png");
+    bullet.setAttribute("src", "assets/bullet.jpeg");
     bullet.setAttribute("width", "10");
     bullet.setAttribute("height", "10");
     bullet.setAttribute("x", player.getAttribute("x"));
