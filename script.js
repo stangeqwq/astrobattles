@@ -29,8 +29,9 @@ function Play() {
   document.getElementById("title").remove();
   document.getElementById("creator").remove();
   setUpGame();
+
   detectMovementCollision();
-  shoot();
+  
 }
 function setUpGame() {
   /* start creating the game container and character */
@@ -55,9 +56,12 @@ function detectMovementCollision() {
   let accR = 0;
   let accF = 0;
   let isGameOver = false;
+  let isPressed = false;
 
   let prevPosX = 0;
   let prevPosY = 0;
+  let prevRotationAngle = rotationAngle;
+
   /* 
     This part required some thinking and knowledge of physics and math. Normal coordinate system does not apply here. We have positive x-axis towards the right with y-axis positive below.
     This is why there is that "-1" at the end of the Math.sin() argument. The additional "-1"s beside the rotationAngle is to account for CW is read as positive
@@ -69,8 +73,7 @@ function detectMovementCollision() {
     if(!isGameOver) {
       const deltaTime = (currentTime - prevTime) / 1000; // convert milliseconds to seconds
       prevTime = currentTime;
-  
-      const oldPos = { x: posX, y: posY };
+
       velX += accF * Math.cos((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2);
       velY += accF * Math.sin(-1 * ((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2));
       angularV += accR
@@ -81,7 +84,6 @@ function detectMovementCollision() {
       if (rotationAngle > 360) {
         rotationAngle %= 360;
       } 
-  
       player.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotationAngle}deg)`;
     }
     //simple collision detection
@@ -97,9 +99,6 @@ function detectMovementCollision() {
     }
     window.requestAnimationFrame(Movement);
   }
-  let prevTime = performance.now();
-  window.requestAnimationFrame(Movement);
-
 
   /* The ship has some "acceleration cap" to avoid system overload */
   document.addEventListener("keydown", function(event) {
@@ -128,6 +127,15 @@ function detectMovementCollision() {
       velX = 0;
     } 
   });
+  console.log(posX);
+  console.log(posY);
+  console.log(rotationAngle);
+  isPressed = shoot(posX, posY, rotationAngle, isPressed);
+
+  let prevTime = performance.now();
+  window.requestAnimationFrame(Movement);
+
+  return posX, posY, rotationAngle;
 }
 function gameOverfunc() {
   isGameOver = true;
@@ -146,21 +154,54 @@ function bullet(){
   bullet.setAttribute("src", "assets/bullet.jpeg");
   bullet.setAttribute("width", "10");
   bullet.setAttribute("height", "10");
-  bullet.setAttribute("x", player.getAttribute("x"));
-  bullet.setAttribute("y", player.getAttribute("y"));
+
+  // Get the 'player' element
+  const playerElement = document.getElementById('player');
+  // Extract transform values
+  const { posX, posY, rotationAngle } = getTransformValuesFromElement(playerElement);
+
+  console.log(`posX: ${posX}px, posY: ${posY}px, rotationAngle: ${rotationAngle}deg`);
+
+  bullet.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotationAngle}deg)`
   gameContainer.appendChild(bullet);
 }
 
-function shoot() {
+function shoot(isPressed) {
   /* to create a shoot function, we need to a new css element to be generated with id "bullet" that 
   would have some movement speed going in the direction "forward" of the "player" id element
    */
   //the code below occurs whenever the player presses "w" keyup
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'w' || event.key === 'W') {
+    if ((event.key === 'w' || event.key === 'W') && isPressed == false) {
         bullet();
+        isPressed = true;
     }
   });
+  document.addEventListener('keyup', function(event) {
+    if ((event.key === 'w' || event.key === 'W')) {
+        isPressed = false;
+    }
+  });
+  return isPressed;
 }
 
+function getTransformValuesFromElement(element) {
+  const style = window.getComputedStyle(element);
+  const transform = style.transform;
 
+  if (!transform || transform === 'none') {
+      return { posX: 0, posY: 0, rotationAngle: 0 };
+  }
+
+  const values = transform.match(/matrix\(([^)]+)\)/)[1].split(',').map(parseFloat);
+  const [a, b, c, d, e, f] = values;
+  
+  // posX and posY are e and f respectively
+  const posX = e;
+  const posY = f;
+  
+  // Calculate the rotation angle in degrees
+  const rotationAngle = Math.atan2(b, a) * (180 / Math.PI);
+
+  return { posX, posY, rotationAngle };
+}
