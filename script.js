@@ -140,25 +140,27 @@ function gameOverfunc() {
   document.removeEventListener("keydown", keydownHandler);
   document.removeEventListener("keyup", keyupHandler);
 }
+function bullet(){
+  const bullet = document.createElement("img");
+  bullet.setAttribute("id", "bullet");
+  bullet.setAttribute("src", "assets/bullet.jpeg");
+  bullet.setAttribute("width", "10");
+  bullet.setAttribute("height", "10");
+  bullet.setAttribute("x", player.getAttribute("x"));
+  bullet.setAttribute("y", player.getAttribute("y"));
+  gameContainer.appendChild(bullet);
+}
+
 function shoot() {
   /* to create a shoot function, we need to a new css element to be generated with id "bullet" that 
   would have some movement speed going in the direction "forward" of the "player" id element
    */
   //the code below occurs whenever the player presses "w" keyup
-  document.addEventListener("keyup", function(event) {
-    if (event.key === "w") {
-      bullet();
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'w' || event.key === 'W') {
+        bullet();
     }
   });
-  function bullet(){
-    const bullet = document.createElement("img");
-    bullet.setAttribute("id", "bullet");
-    bullet.setAttribute("src", "assets/bullet.jpeg");
-    bullet.setAttribute("width", "10");
-    bullet.setAttribute("height", "10");
-    bullet.setAttribute("x", player.getAttribute("x"));
-    bullet.setAttribute("y", player.getAttribute("y"));
-    body.appendChild(bullet);
-  }
 }
+
 
