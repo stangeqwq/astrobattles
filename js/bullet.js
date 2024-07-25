@@ -2,11 +2,12 @@ class Bullet {
     constructor(game, player) {
       this.game = game;
       this.player = player;
-      this.element = document.createElement("img");
-      this.element.setAttribute("id", `bullet${this.game.numBullets++}`);
-      this.element.setAttribute("src", "assets/bullet.jpeg");
-      this.element.setAttribute("width", "10");
-      this.element.setAttribute("height", "10");
+      this.bullet = document.createElement("img");
+      this.bullet.setAttribute("id", `bullet${this.game.numBullets++}`);
+      this.bullet.setAttribute("src", "assets/bullet.jpeg");
+      this.bullet.setAttribute("width", "10");
+      this.bullet.setAttribute("height", "10");
+      this.bullet.style.position = "absolute";
   
       const { posX, posY, rotationAngle } = player;
       this.posX = posX;
@@ -14,8 +15,8 @@ class Bullet {
       this.rotationAngle = rotationAngle;
       this.accB = 300;
   
-      this.element.style.transform = `translate(${this.posX}px, ${this.posY}px) rotate(${this.rotationAngle}deg)`;
-      this.game.player.gameContainer.appendChild(this.element);
+      this.bullet.style.transform = `translate(${this.posX}px, ${this.posY}px) rotate(${this.rotationAngle}deg)`;
+      this.game.player.gameContainer.appendChild(this.bullet);
     }
   
     update(deltaTime) {
@@ -24,17 +25,17 @@ class Bullet {
       this.posX += this.velX * deltaTime;
       this.posY += this.velY * deltaTime;
   
-      this.element.style.transform = `translate(${this.posX}px, ${this.posY}px) rotate(${this.rotationAngle}deg)`;
+      this.bullet.style.transform = `translate(${this.posX}px, ${this.posY}px) rotate(${this.rotationAngle}deg)`;
     }
   
     isOutOfBound() {
-      const bulletRect = this.element.getBoundingClientRect();
+      const bulletRect = this.bullet.getBoundingClientRect();
       const containerRect = this.game.player.gameContainer.getBoundingClientRect();
       return bulletRect.left < containerRect.left || bulletRect.right > containerRect.right || bulletRect.top < containerRect.top || bulletRect.bottom > containerRect.bottom;
     }
   
     remove() {
-      this.element.remove();
+      this.bullet.remove();
     }
   }
   
