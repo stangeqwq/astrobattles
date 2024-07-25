@@ -33,7 +33,7 @@ class Player {
         this.accR = 5;
       } else if (event.key === "s") {
         this.accF = 5;
-      } else if (event.key === "w") {
+      } else if (event.key === "w" || event.key === "j") {
         this.game.shoot();
       }
     }
@@ -46,7 +46,7 @@ class Player {
         this.accF = 0;
         this.velX = 0;
         this.velY = 0;
-      } else if (event.key === "w") {
+      } else if (event.key === "w" || event.key === "j") {
         this.isShooting = false;
       }
     }

@@ -1,6 +1,8 @@
 class AudioHandler {
     constructor() {
       this.space = new Audio('assets/space.mp3');
+      this.space.loop = true; // Loop background music indefinitely
+
       this.gameOver = new Audio('assets/gameover.mp3');
     }
   
@@ -13,6 +15,7 @@ class AudioHandler {
     }
   
     playGameOver() {
+      this.pauseSpace();
       this.gameOver.play();
     }
   }

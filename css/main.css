@@ -35,11 +35,13 @@ body {
   width: 40px;
   /*border: 2px solid red;
   margin: auto;*/
+  position: absolute;
 }
 #game-container {
   height: 100vh;
   width: 100vw;
   display: flex;
+
   justify-content: center;
   align-items: center;
   position: relative;
