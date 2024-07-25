@@ -6,6 +6,7 @@ class Game {
       this.asteroids = [];
       this.bullets = [];
       this.numBullets = 1;
+      this.numAsteroids = 1;
       this.isGameOver = false;
     }
   

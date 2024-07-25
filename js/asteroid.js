@@ -3,17 +3,18 @@ class Asteroid {
       this.game = game;
       this.player = player;
       this.asteroid = document.createElement("img");
-      this.asteroid.setAttribute("id", `asteroid${this.game.numAsteroids++}`);
+      this.asteroid.setAttribute("id", `asteroid${game.numAsteroids++}`);
       this.asteroid.setAttribute("src", "assets/asteroid2.png");
       this.asteroid.setAttribute("width", "30"); // random
       this.asteroid.setAttribute("height", "30"); // random
       this.asteroid.style.position = "absolute";
- 
-      this.posX = 20; // random on the corners of game-container
-      this.posY = 20;
-      this.rotationAngle = 90; 
-      this.accA = 300; // random acceleration for asteroid
-  
+      //game-container posY -300 to 300, posX -700 to 700
+      const {posX, posY, rotationAngle, accA} = this.getRandomStart();
+
+      this.posX = posX;
+      this.posY = posY;
+      this.rotationAngle = rotationAngle;
+      this.accA = accA;
       this.asteroid.style.transform = `translate(${this.posX}px, ${this.posY}px) rotate(${this.rotationAngle}deg)`;
       this.game.player.gameContainer.appendChild(this.asteroid);
     }
@@ -36,5 +37,41 @@ class Asteroid {
     remove() {
       this.asteroid.remove();
     }
+
+    getRandomStart() {
+      let randomVal = Math.random();
+      let posX = 0;
+      let posY = 0;
+      let rotationAngle = 0;
+      let accA = 500 * Math.random();
+      if (randomVal > 0.75) { // from left
+        posX = -700;
+        posY = 300 * Math.random();
+        rotationAngle = (180-0) * Math.random();
+      } else if (randomVal < 0.25){ // from right
+        posX = 700; 
+        posY = 300 * Math.random();
+        rotationAngle = (-180-0) * Math.random();
+      } else if (randomVal > 0.25 && randomVal < 0.5) { // from up
+        posX = 700 * Math.random(); 
+        posY = -300;
+        if (Math.random() > 0.5) {
+          rotationAngle = 90 + 90*Math.random(); 
+        } else {
+          rotationAngle = -90 - 90*Math.random();
+        }
+      } else if (randomVal > 0.5 && randomVal < 0.75) { // from down 
+        posX = 700 * Math.random(); 
+        posY = 300;
+        if (Math.random() > 0.5) {
+          rotationAngle = 90*Math.random();
+        } else {
+          rotationAngle = -90*Math.random();
+        }
+        rotationAngle = 90 * Math.random() - 90 * Math.random();;
+      }
+      return {posX, posY, rotationAngle, accA};
+    }
+   
   }
   
