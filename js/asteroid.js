@@ -3,10 +3,11 @@ class Asteroid {
       this.game = game;
       this.player = player;
       this.asteroid = document.createElement("img");
+      this.size = 50 * Math.random() + 30;
       this.asteroid.setAttribute("id", `asteroid${game.numAsteroids++}`);
       this.asteroid.setAttribute("src", "assets/asteroid2.png");
-      this.asteroid.setAttribute("width", "30"); // random
-      this.asteroid.setAttribute("height", "30"); // random
+      this.asteroid.setAttribute("width", `${this.size}`); // random
+      this.asteroid.setAttribute("height", `${this.size}`); // random
       this.asteroid.style.position = "absolute";
       //game-container posY -300 to 300, posX -700 to 700
       const {posX, posY, rotationAngle, accA} = this.getRandomStart();
@@ -71,6 +72,9 @@ class Asteroid {
         rotationAngle = 90 * Math.random() - 90 * Math.random();;
       }
       return {posX, posY, rotationAngle, accA};
+    }
+    getPosSize() {
+      return {posX: this.posX, posY: this.posY, size: this.size};
     }
    
   }

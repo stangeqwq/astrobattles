@@ -37,7 +37,7 @@ class Game {
 
         if (!this.isGameOver) {
           this.player.update(deltaTime);
-          this.checkPlayerExitGameContainer();
+          this.checkPlayerCollisions();
           if ((currentTime - asteroidTime) >= scheduledRandomAsteroidTime) {
             scheduledRandomAsteroidTime = this.scheduleRandomAsteroid();
             this.randomAsteroidEvent();
@@ -84,17 +84,39 @@ class Game {
     }
   
     scheduleRandomAsteroid() {
-      const randomTime = Math.random() * (5000 - 1000) + 1000; // Random time between 1 and 5 seconds
+      const randomTime = Math.random() * (2000 - 1000) + 200; // Random time between 1 and 5 seconds
       return randomTime;
     }
   
-    checkPlayerExitGameContainer() {
+    checkPlayerCollisions() {
       const playerRect = this.player.getBoundingClientRect();
       const containerRect = this.player.gameContainer.getBoundingClientRect();
   
       if (playerRect.left < containerRect.left || playerRect.right > containerRect.right || playerRect.top < containerRect.top || playerRect.bottom > containerRect.bottom) {
         this.gameOver();
+      } else { // check if player collides with an asteroid
+        this.asteroids.forEach((asteroid, index) => {
+          console.log(this.isColliding(asteroid, this.player));
+          if (this.isColliding(asteroid, this.player)) {
+            this.asteroids.splice(index, 1);
+            this.gameOver();
+          }
+        });
       }
+    }
+
+    isColliding(square1, square2) {
+      const s1 = square1.getPosSize();
+      const s2 = square2.getPosSize();
+      console.log(s1);
+      console.log(s2);
+    
+      return (
+        s1.posX < s2.posX + s2.size &&
+        s1.posX + s1.size > s2.posX &&
+        s1.posY < s2.posY + s2.size &&
+        s1.posY + s1.size > s2.posY 
+      );
     }
   
     gameOver() {
