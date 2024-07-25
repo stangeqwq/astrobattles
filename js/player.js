@@ -10,7 +10,7 @@ class Player {
       this.accR = 0;
       this.accF = 0;
       this.isShooting = false;
-      this.size = 10;
+      this.size = 40; //40px width
     }
   
     init(gameContainer) {
@@ -77,7 +77,7 @@ class Player {
       return this.player.getBoundingClientRect();
     }
     getPosSize() {
-      return {posX: this.posX, posY: this.posY, size: this.size};
+      return {posX: this.posX, posY: this.posY, size: this.size / 2};
     }
 
 }

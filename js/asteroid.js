@@ -74,7 +74,7 @@ class Asteroid {
       return {posX, posY, rotationAngle, accA};
     }
     getPosSize() {
-      return {posX: this.posX, posY: this.posY, size: this.size};
+      return {posX: this.posX, posY: this.posY, size: this.size / 2}; // divide by two for the width
     }
    
   }
