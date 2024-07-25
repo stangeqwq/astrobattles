@@ -211,13 +211,26 @@ function moveBullets(deltaTime) {
   for (let currentNum = 1; currentNum < numBullets; currentNum++) {
     const currentBullet = document.getElementById(`bullet${currentNum}`);
     let { posX, posY, rotationAngle } = getTransformValuesFromElement(currentBullet);
-    let accB = 1000; // constant for bullet movement
+    let accB = 300; // constant for bullet movement
     velX = accB * Math.cos((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2);
     velY = accB * Math.sin(-1 * ((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2));
     posX += velX * deltaTime;
     posY += velY * deltaTime;
     currentBullet.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotationAngle}deg)`;
 
+    // check if bullet exits the game container
+    const currentBulletRect = currentBullet.getBoundingClientRect();
+    const containerRect = document.getElementById("game-container").getBoundingClientRect();
+    if (currentBulletRect.left < containerRect.left || currentBulletRect.right > containerRect.right || currentBulletRect.top < containerRect.top || currentBulletRect.bottom > containerRect.bottom) {
+      currentBullet.remove()
+      // update bullet ids (quick solution just subtract all bullet ids with one to update)
+      for (let num = currentNum; num < numBullets - 1; num++) {
+        console.log(num);
+        console.log(numBullets);
+        const nextBullet = document.getElementById(`bullet${num + 1}`);
+        nextBullet.setAttribute("id", `bullet${num}`);
+      }
+      numBullets -= 1;
+    }
   }
-
 }
