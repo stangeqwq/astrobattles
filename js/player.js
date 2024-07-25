@@ -14,10 +14,10 @@ class Player {
   
     init(gameContainer) {
       this.gameContainer = gameContainer;
-      this.element = document.createElement("img");
-      this.element.setAttribute("src", "assets/character.png");
-      this.element.setAttribute("id", "player");
-      gameContainer.appendChild(this.element);
+      this.player = document.createElement("img");
+      this.player.setAttribute("src", "assets/character.png");
+      this.player.setAttribute("id", "player");
+      gameContainer.appendChild(this.player);
       this.addEventListeners();
     }
   
@@ -34,7 +34,7 @@ class Player {
       } else if (event.key === "s") {
         this.accF = 5;
       } else if (event.key === "w" || event.key === "j") {
-        this.game.shoot();
+        this.shoot();
       }
     }
   
@@ -63,11 +63,17 @@ class Player {
         this.rotationAngle %= 360;
       }
   
-      this.element.style.transform = `translate(${this.posX}px, ${this.posY}px) rotate(${this.rotationAngle}deg)`;
+      this.player.style.transform = `translate(${this.posX}px, ${this.posY}px) rotate(${this.rotationAngle}deg)`;
     }
-  
+    shoot() {
+      if (!this.isShooting) {
+        const bullet = new Bullet(this.game, this);
+        this.game.bullets.push(bullet);
+        this.isShooting = true;
+      }
+    }
     getBoundingClientRect() {
-      return this.element.getBoundingClientRect();
+      return this.player.getBoundingClientRect();
     }
-  }
+}
   

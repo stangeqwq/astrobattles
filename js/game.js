@@ -3,6 +3,7 @@ class Game {
       this.body = document.getElementById('body');
       this.audio = new AudioHandler();
       this.player = new Player(this);
+      this.asteroids = [];
       this.bullets = [];
       this.numBullets = 1;
       this.isGameOver = false;
@@ -13,7 +14,7 @@ class Game {
     }
   
     start() {
-      this.detectMovementCollision();
+      this.startPlayerBullet();
     }
   
     setUpGame() {
@@ -25,21 +26,33 @@ class Game {
       this.audio.playSpace();
     }
   
-    detectMovementCollision() {
+      startPlayerBullet() {
       let prevTime = performance.now();
-  
-      const movement = (currentTime) => {
+      let asteroidTime = performance.now();
+      let scheduledRandomAsteroidTime = this.scheduleRandomAsteroid();
+
+      const gameLoop = (currentTime) => {
         const deltaTime = (currentTime - prevTime) / 1000;
+
         if (!this.isGameOver) {
-          prevTime = currentTime;
           this.player.update(deltaTime);
-          this.moveBullets(deltaTime);
-          this.checkCollisions();
+          this.checkPlayerExitGameContainer();
+          if ((currentTime - asteroidTime) >= scheduledRandomAsteroidTime) {
+            scheduledRandomAsteroidTime = this.scheduleRandomAsteroid();
+            this.randomAsteroidEvent();
+            asteroidTime = currentTime;
+          }
         }
-        window.requestAnimationFrame(movement);
+
+        this.moveBullets(deltaTime);
+        this.moveAsteroids(deltaTime);
+        this.scheduleRandomAsteroid();
+
+        prevTime = currentTime;
+        window.requestAnimationFrame(gameLoop);
       };
   
-      window.requestAnimationFrame(movement);
+      window.requestAnimationFrame(gameLoop); // initial play
     }
   
     moveBullets(deltaTime) {
@@ -47,12 +60,34 @@ class Game {
         bullet.update(deltaTime);
         if (bullet.isOutOfBound()) {
           bullet.remove();
-          this.bullets.splice(index, 1);
+          this.bullets.splice(index, 1); // remove the asteroid at that index
         }
       });
     }
+
+    moveAsteroids(deltaTime) {
+      this.asteroids.forEach((asteroid, index) => {
+        asteroid.update(deltaTime);
+        if (asteroid.isOutOfBound()) {
+          asteroid.remove();
+          this.asteroids.splice(index, 1); // remove the asteroid at that index
+        }
+      })
+    }
+
+    randomAsteroidEvent() {
+      // Define the random event logic here
+      console.log("Random asteroid triggered!");
+      const asteroid = new Asteroid(this, this.player);
+      this.asteroids.push(asteroid);
+    }
   
-    checkCollisions() {
+    scheduleRandomAsteroid() {
+      const randomTime = Math.random() * (5000 - 1000) + 1000; // Random time between 1 and 5 seconds
+      return randomTime;
+    }
+  
+    checkPlayerExitGameContainer() {
       const playerRect = this.player.getBoundingClientRect();
       const containerRect = this.player.gameContainer.getBoundingClientRect();
   
@@ -69,14 +104,6 @@ class Game {
       this.body.appendChild(gameoverScreen);
       this.audio.pauseSpace();
       this.audio.playGameOver();
-    }
-  
-    shoot() {
-      if (!this.player.isShooting) {
-        const bullet = new Bullet(this, this.player);
-        this.bullets.push(bullet);
-        this.player.isShooting = true;
-      }
     }
   }
   

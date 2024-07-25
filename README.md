@@ -1,8 +1,9 @@
 # Astrobattles
-This was a small project I had to create a website game. 
+This is a 2D shooter website game.
 # Features
 - shooting bullets from spacecraft
 - rotation and forward movement of spacecraft
+- asteroids and collision detection
 # The menu screen
 Below is an image of the interactive javascript menu screen.
 ![alt text](https://github.com/stangeqwq/astrobattles/blob/main/assets/Menu.png)
