@@ -1,5 +1,5 @@
 # Astrobattles
-This is a 2D shooter website game.
+This is a 2D shooter website game with the objective of avoiding asteroids and shooting as many as possible of them.
 # Features
 - shooting bullets from spacecraft
 - rotation and forward movement of spacecraft
