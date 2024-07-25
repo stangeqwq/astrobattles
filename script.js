@@ -1,6 +1,8 @@
 var space = new Audio("assets/space.mp3");
 var gameOver = new Audio("assets/gameover.mp3")
 
+let numBullets = 1;
+
 function Settings() {
   document.getElementById("homemenu").remove();
   comingsoon = document.createElement("div");
@@ -58,10 +60,6 @@ function detectMovementCollision() {
   let isGameOver = false;
   let isPressed = false;
 
-  let prevPosX = 0;
-  let prevPosY = 0;
-  let prevRotationAngle = rotationAngle;
-
   /* 
     This part required some thinking and knowledge of physics and math. Normal coordinate system does not apply here. We have positive x-axis towards the right with y-axis positive below.
     This is why there is that "-1" at the end of the Math.sin() argument. The additional "-1"s beside the rotationAngle is to account for CW is read as positive
@@ -70,8 +68,8 @@ function detectMovementCollision() {
     Math.sin(-1 * ((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2));
   */
   function Movement(currentTime) {
+    const deltaTime = (currentTime - prevTime) / 1000; // convert milliseconds to seconds
     if(!isGameOver) {
-      const deltaTime = (currentTime - prevTime) / 1000; // convert milliseconds to seconds
       prevTime = currentTime;
 
       velX += accF * Math.cos((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2);
@@ -97,6 +95,8 @@ function detectMovementCollision() {
       // trigger game over
       gameOverfunc();
     }
+    moveBullets(deltaTime);
+
     window.requestAnimationFrame(Movement);
   }
 
@@ -150,7 +150,8 @@ function gameOverfunc() {
 }
 function bullet(){
   const bullet = document.createElement("img");
-  bullet.setAttribute("id", "bullet");
+  bullet.setAttribute("id", `bullet${numBullets}`);
+  numBullets += 1;
   bullet.setAttribute("src", "assets/bullet.jpeg");
   bullet.setAttribute("width", "10");
   bullet.setAttribute("height", "10");
@@ -204,4 +205,19 @@ function getTransformValuesFromElement(element) {
   const rotationAngle = Math.atan2(b, a) * (180 / Math.PI);
 
   return { posX, posY, rotationAngle };
+}
+
+function moveBullets(deltaTime) {
+  for (let currentNum = 1; currentNum < numBullets; currentNum++) {
+    const currentBullet = document.getElementById(`bullet${currentNum}`);
+    let { posX, posY, rotationAngle } = getTransformValuesFromElement(currentBullet);
+    let accB = 1000; // constant for bullet movement
+    velX = accB * Math.cos((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2);
+    velY = accB * Math.sin(-1 * ((-1 * rotationAngle * Math.PI) / 180 + Math.PI / 2));
+    posX += velX * deltaTime;
+    posY += velY * deltaTime;
+    currentBullet.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotationAngle}deg)`;
+
+  }
+
 }
