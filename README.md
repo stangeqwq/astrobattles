@@ -9,6 +9,7 @@ This is a 2D shooter website game with the objective of avoiding asteroids and s
 # To work on
 - improve UI and graphics
 - add more features (powerups, bullet reloading, etc.)
+- render the scoreboard by fetching from database
 - secure `/api/score` endpoint to prevent malicious `POST` requests with unfathomably large score points
 
 # The menu screen
