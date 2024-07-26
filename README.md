@@ -19,3 +19,5 @@ Below is how the gameplay looks.
 You receive a game over screen if you get hit by a random asteroid or the player exits the game arena.
 ![alt text](https://github.com/stangeqwq/astrobattles/blob/main/assets/GameOverAsteroid.png)
 
+Your score, name, and other data is saved through a python backend with mongoDB as the database.
+
