@@ -4,6 +4,7 @@ class AudioHandler {
       this.space.loop = true; // Loop background music indefinitely
 
       this.gameOver = new Audio('assets/gameover.mp3');
+      this.score = new Audio('assets/score.mp3');
     }
   
     playSpace() {
@@ -17,6 +18,10 @@ class AudioHandler {
     playGameOver() {
       this.pauseSpace();
       this.gameOver.play();
+    }
+
+    playScore() {
+      this.score.play();
     }
   }
   

@@ -8,6 +8,7 @@ class Game {
       this.numBullets = 1;
       this.numAsteroids = 1;
       this.isGameOver = false;
+      this.scorepoints = 0;
     }
   
     init() {
@@ -22,6 +23,11 @@ class Game {
       const gameContainer = document.createElement("div");
       gameContainer.setAttribute("id", "game-container");
       this.body.appendChild(gameContainer);
+      const scoreCounter = document.createElement("div");
+      scoreCounter.setAttribute("id", "scoreCounter");
+      //game-container posY: -300 to 300, posX: -700 to 700
+      gameContainer.appendChild(scoreCounter);
+      scoreCounter.innerHTML = this.scorepoints;
       
       this.player.init(gameContainer);
       this.audio.playSpace();
@@ -62,6 +68,20 @@ class Game {
         if (bullet.isOutOfBound()) {
           bullet.remove();
           this.bullets.splice(index, 1); // remove the asteroid at that index
+        } else {
+          this.asteroids.forEach((asteroid, index2) => { // it has to be in this function to remember the index of bullet in the list
+            if (this.isColliding(bullet, asteroid)) {
+              bullet.remove();
+              this.bullets.splice(index, 1);
+              asteroid.remove();
+              this.asteroids.splice(index2, 1);
+              this.scorepoints++;
+              this.audio.playScore();
+              // render the new points when bullet hits asteroid
+              const scoreCounter = document.getElementById("scoreCounter");
+              scoreCounter.innerHTML = this.scorepoints;
+            }
+          });
         }
       });
     }
@@ -96,9 +116,9 @@ class Game {
         this.gameOver();
       } else { // check if player collides with an asteroid
         this.asteroids.forEach((asteroid, index) => {
-          console.log(this.isColliding(asteroid, this.player));
+          //console.log(this.isColliding(asteroid, this.player));
           if (this.isColliding(asteroid, this.player)) {
-            this.asteroids.splice(index, 1);
+            this.asteroids.splice(index, 1); // stop the asteroid moving (remove it from the list) to emphasize the collision
             this.gameOver();
           }
         });
@@ -108,8 +128,8 @@ class Game {
     isColliding(square1, square2) {
       const s1 = square1.getPosSize();
       const s2 = square2.getPosSize();
-      console.log(s1);
-      console.log(s2);
+      //console.log(s1);
+      //console.log(s2);
     
       return (
         s1.posX < s2.posX + s2.size &&

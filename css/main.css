@@ -61,3 +61,13 @@ body {
   transform: translate(-50%, -50%);
   z-index: 1;
 }
+#scoreCounter {
+  height: 50px;
+  min-width: 120px;
+  border-radius: 10px;
+  /* background-color: rgba(255, 0, 0, 0.187);*/
+  color: white;
+  margin-top: 20px;
+  font-size: 30px;
+  transform: translate(600px, -300px);
+}
