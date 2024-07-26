@@ -1,12 +1,12 @@
 # Astrobattles
-This is a 2D shooter website game with the objective of avoiding asteroids and shooting as many as possible of them.
+This is a 2D shooter website game with the objective of avoiding asteroids and shooting as many as possible of them. It uses the `P3`-stack (Python, postgreSQL, and progessive web technologies) for a simple web game.
 # Features
 - shooting bullets from spacecraft
 - rotation and forward movement of spacecraft
 - asteroids and collision detection
 - scoring mechanism
 # To work on
-- a python backend with mongoDB to handle scores and scoreboard
+- a python backend with postgreSQL to handle scores and scoreboard (code in gameover class)
 - improve UI and graphics
 - add more features (powerups, bullet reloading, etc.)
 
