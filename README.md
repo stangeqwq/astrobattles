@@ -12,10 +12,10 @@ This is a 2D shooter website game with the objective of avoiding asteroids and s
 # The menu screen
 Below is an image of the interactive javascript menu screen.
 ![alt text](https://github.com/stangeqwq/astrobattles/blob/main/assets/Menu.png)
-# The gameover screen
-Below is an image of the game over screen being triggered when the game character exits the game arena. Other effects are also included.
-![alt text](https://github.com/stangeqwq/astrobattles/blob/main/assets/GameOverExit.png)
+# Gameplay and Game Over
+Below is how the gameplay looks.
+![alt text](https://github.com/stangeqwq/astrobattles/blob/main/assets/gameplay.gif)
 
-You also receive a game over screen if you get hit by a random asteroid.
+You receive a game over screen if you get hit by a random asteroid or the player exits the game arena.
 ![alt text](https://github.com/stangeqwq/astrobattles/blob/main/assets/GameOverHit.png)
 

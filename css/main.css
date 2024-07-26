@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 body {
   background-image: url(../assets/space.gif);
 }
@@ -5,7 +6,7 @@ body {
   background-color: #04AA6D; 
   border: 2px solid green; 
   font-size: 30px;
-  font-family: monospace;
+  font-family: 'Press Start 2P';
   color: white;
   text-align: center;
   padding-top: 50px;
@@ -15,21 +16,21 @@ body {
   width: 70%;
   margin-left: 15%;
 }
-  .btn-group button:hover {
-    background-color: #3e8e41;
-  }
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
 .title {
   color: green;
   -webkit-text-stroke: 2px white;
   font-size: 70px;
   text-align: center;
-  font-family: monospace;
+  font-family: 'Press Start 2P';
 }
 .creator {
   color: rgb(22, 185, 126);
   font-size: 20px;
   text-align: center;
-  font-family: monospace;
+  font-family: 'Press Start 2P';
 }
 #player {
   width: 40px;
@@ -52,7 +53,7 @@ body {
   -webkit-text-stroke: 2px white;
   font-size: 70px;
   text-align: center;
-  font-family: monospace;
+  font-family: 'Press Start 2P';
 }
 #game-over {
   position: absolute;
@@ -69,5 +70,38 @@ body {
   color: white;
   margin-top: 20px;
   font-size: 30px;
+  font-family: 'Press Start 2P';
   transform: translate(600px, -300px);
 }
+.GameOverModal {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.modal-content {
+  color: #CB4323;
+  font-size: 10px;
+  text-align: center;
+  font-family: 'Press Start 2P';
+}
+#cancelbutton {
+  color: black(1, 1, 96);
+  background-color: #CB4323;
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+}
+#savebutton {
+  color: black(1, 1, 96);
+  background-color: #CB4323;
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+}
+#name {
+  background-color: #CB4323;
+  color: black(1, 1, 96);
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+}
+
