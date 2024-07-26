@@ -4,6 +4,11 @@ This is a 2D shooter website game with the objective of avoiding asteroids and s
 - shooting bullets from spacecraft
 - rotation and forward movement of spacecraft
 - asteroids and collision detection
+- scoring mechanism
+# To work on
+- a python backend with mongoDB to handle scores and scoreboard
+- improve UI and graphics
+
 # The menu screen
 Below is an image of the interactive javascript menu screen.
 ![alt text](https://github.com/stangeqwq/astrobattles/blob/main/assets/Menu.png)
