@@ -8,6 +8,7 @@ This is a 2D shooter website game with the objective of avoiding asteroids and s
 # To work on
 - a python backend with mongoDB to handle scores and scoreboard
 - improve UI and graphics
+- add more features (powerups, bullet reloading, etc.)
 
 # The menu screen
 Below is an image of the interactive javascript menu screen.
