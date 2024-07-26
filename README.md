@@ -6,7 +6,7 @@ This is a 2D shooter website game with the objective of avoiding asteroids and s
 - asteroids and collision detection
 - scoring mechanism
 # To work on
-- a python backend with postgreSQL to handle scores and scoreboard
+- setup of database .sql script + proper credential hiding
 - improve UI and graphics
 - add more features (powerups, bullet reloading, etc.)
 
