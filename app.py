@@ -6,10 +6,10 @@ import atexit
 app = Flask(__name__)
 
 # Database connection parameters
-DB_HOST = 'your_db_host'
+DB_HOST = 'localhost'
 DB_NAME = 'astrobattles'
-DB_USER = 'your_db_user'
-DB_PASS = 'your_db_password'
+DB_USER = 'test'
+DB_PASS = 'sample_password'
 
 def get_db_connection():
     conn = psycopg2.connect(
@@ -44,7 +44,7 @@ def drop_database():
     try:
         conn = psycopg2.connect(
             host=DB_HOST,
-            database=DB_NAME,  
+            database="postgres", # must be another database to drop 
             user=DB_USER,
             password=DB_PASS
         )

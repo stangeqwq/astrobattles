@@ -59,7 +59,7 @@ class GameOverHandler {
   }
   saveScore() {
     const name = document.getElementById("name").value;
-    console.log(this.game.scorepoints);
+    //console.log(this.game.scorepoints);
     if (name) {
       fetch("/api/score", {
         method: "POST",
