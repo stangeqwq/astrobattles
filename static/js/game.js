@@ -81,7 +81,7 @@ class Game {
             this.audio.playScore();
             // render the new points when bullet hits asteroid
             const scoreCounter = document.getElementById("scoreCounter");
-            scoreCounter.innerHTML = this.scorepoints;
+            scoreCounter.innerText = this.scorepoints;
           }
         });
       }

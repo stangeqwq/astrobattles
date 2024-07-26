@@ -16,7 +16,7 @@ class Player {
   init(gameContainer) {
     this.gameContainer = gameContainer;
     this.player = document.createElement("img");
-    this.player.setAttribute("src", "assets/character.png");
+    this.player.setAttribute("src", "/static/assets/character.png");
     this.player.setAttribute("id", "player");
     gameContainer.appendChild(this.player);
     this.addEventListeners();

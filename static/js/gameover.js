@@ -6,11 +6,10 @@ class GameOverHandler {
     this.game.isGameOver = true;
     const gameoverScreen = document.createElement("img");
     gameoverScreen.setAttribute("id", "game-over");
-    gameoverScreen.setAttribute("src", "assets/gameover.png");
+    gameoverScreen.setAttribute("src", "/static/assets/gameover.png");
     this.game.body.appendChild(gameoverScreen);
     this.game.audio.pauseSpace();
     this.game.audio.playGameOver();
-
     this.renderGameOverModal();
   }
   renderGameOverModal() {
@@ -37,12 +36,12 @@ class GameOverHandler {
     const saveButton = document.createElement("button");
     saveButton.id = "savebutton";
     saveButton.innerText = "Save";
-    //saveButton.onclick = saveScore;
+    saveButton.onclick = () => this.saveScore();
 
     const cancelButton = document.createElement("button");
     cancelButton.id = "cancelbutton";
     cancelButton.innerText = "Cancel";
-    //cancelButton.onclick = closeModal;
+    cancelButton.onclick = () => this.closeModal();
 
     // Append elements
     GameOverModalContent.appendChild(message);
@@ -57,5 +56,35 @@ class GameOverHandler {
 
     // Show the modal
     GameOverModal.style.display = "block";
+  }
+  saveScore() {
+    const name = document.getElementById("name").value;
+    console.log(this.game.scorepoints);
+    if (name) {
+      fetch("/api/score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ score: this.game.scorepoints, name: name }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          this.closeModal();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          this.closeModal();
+        });
+    } else {
+      alert("Please enter your name.");
+    }
+  }
+  closeModal() {
+    const modal = document.getElementById('saveModal');
+    if (modal) {
+        document.body.removeChild(modal);
+    }
   }
 }

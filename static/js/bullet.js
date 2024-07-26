@@ -5,7 +5,7 @@ class Bullet {
     this.size = 10;
     this.bullet = document.createElement("img");
     this.bullet.setAttribute("id", `bullet${this.game.numBullets++}`);
-    this.bullet.setAttribute("src", "assets/bullet.jpeg");
+    this.bullet.setAttribute("src", "/static/assets/bullet.jpeg");
     this.bullet.setAttribute("width", `${this.size}`);
     this.bullet.setAttribute("height", `${this.size}`);
     this.bullet.style.position = "absolute";

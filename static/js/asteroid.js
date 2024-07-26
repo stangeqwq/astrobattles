@@ -5,7 +5,7 @@ class Asteroid {
     this.asteroid = document.createElement("img");
     this.size = 50 * Math.random() + 30;
     this.asteroid.setAttribute("id", `asteroid${game.numAsteroids++}`);
-    this.asteroid.setAttribute("src", "assets/asteroid2.png");
+    this.asteroid.setAttribute("src", "/static/assets/asteroid2.png");
     this.asteroid.setAttribute("width", `${this.size}`); // random
     this.asteroid.setAttribute("height", `${this.size}`); // random
     this.asteroid.style.position = "absolute";
