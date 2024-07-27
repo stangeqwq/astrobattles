@@ -79,6 +79,7 @@ class GameOverHandler {
       console.error("Error:", error);
       return {};
     }
+    this.closeModal();
   }
   closeModal() {
     const modal = document.getElementById('saveModal');
