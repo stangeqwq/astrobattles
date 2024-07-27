@@ -57,28 +57,27 @@ class GameOverHandler {
     // Show the modal
     GameOverModal.style.display = "block";
   }
-  saveScore() {
+  async saveScore() {
     const name = document.getElementById("name").value;
     //console.log(this.game.scorepoints);
-    if (name) {
-      fetch("/api/score", {
+    try {
+      const response = await fetch("api/score", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ score: this.game.scorepoints, name: name }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-          this.closeModal();
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          this.closeModal();
-        });
-    } else {
-      alert("Please enter your name.");
+        body: JSON.stringify({score: this.game.scorepoints, name: name}),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error:", error);
+      return {};
     }
   }
   closeModal() {

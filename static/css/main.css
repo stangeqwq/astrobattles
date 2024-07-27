@@ -22,6 +22,8 @@ body {
 .playerName {
   color: white;
   font-family: "Press Start 2P";
+  text-align: center;
+
 }
 .title {
   color: green;
