@@ -74,12 +74,14 @@ class GameOverHandler {
       }
 
       const data = await response.json();
-      return data;
+      console.log(data);
+      this.closeModal();
+      
     } catch (error) {
       console.error("Error:", error);
-      return {};
+      this.closeModal();
     }
-    this.closeModal();
+    
   }
   closeModal() {
     const modal = document.getElementById('saveModal');
