@@ -11,7 +11,7 @@ function Play() {
 function Settings() {
   document.getElementById("homemenu").remove();
   const comingSoon = document.createElement("div");
-  comingSoon.innerHTML = "Coming Soon!";
+  comingSoon.innerText = "Coming Soon!";
   comingSoon.setAttribute("id", "soon");
   const body = document.getElementById("body");
   body.appendChild(comingSoon);
@@ -19,9 +19,8 @@ function Settings() {
 
 function Scoreboard() {
   document.getElementById("homemenu").remove();
-  const comingSoon = document.createElement("div");
-  comingSoon.innerHTML = "Coming Soon!";
-  comingSoon.setAttribute("id", "soon");
-  const body = document.getElementById("body");
-  body.appendChild(comingSoon);
+  document.getElementById("title").remove();
+  document.getElementById("creator").remove();
+  const scoreBoardRender = new ScoreBoardHandler();
+  scoreBoardRender.displayScoreBoard();
 }

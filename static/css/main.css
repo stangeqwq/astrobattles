@@ -2,7 +2,7 @@
 body {
   background-image: url(../assets/space.gif);
 }
-.btn-group button { 
+.buttonGroup button { 
   background-color: #04AA6D; 
   border: 2px solid green; 
   font-size: 30px;
@@ -16,8 +16,12 @@ body {
   width: 70%;
   margin-left: 15%;
 }
-.btn-group button:hover {
+.buttonGroup button:hover {
   background-color: #3e8e41;
+}
+.playerName {
+  color: white;
+  font-family: "Press Start 2P";
 }
 .title {
   color: green;

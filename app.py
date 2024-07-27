@@ -39,6 +39,25 @@ def save_score():
     
     return jsonify({"message": "Score saved successfully!"})
 
+@app.route('/api/score', methods=['GET'])
+def get_score():
+    rank = request.args.get('rank', type=int)
+    conn = get_db_connection()
+    cur = conn.cursor()
+    query = """
+    SELECT name, score FROM scores
+    ORDER BY score DESC
+    LIMIT 1 OFFSET %s
+    """
+    cur.execute(query, (rank - 1,))
+    result = cur.fetchone()
+    cur.close()
+    conn.close()
+    if result:
+        return jsonify({"name": result[0], "score": result[1]})
+    else:
+        return jsonify({"name": "???", "score" : 0})
+
 def drop_database():
     """Drop the database when the application exits (TESTING PURPOSES FOR REMOVAL OF UNNECESSARY DATA)."""
     try:
