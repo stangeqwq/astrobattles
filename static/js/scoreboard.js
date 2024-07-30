@@ -1,6 +1,10 @@
 class ScoreBoardHandler {
-  constructor() {
+  constructor(Main) {
     this.body = document.getElementById("body");
+    this.main = Main;
+  }
+
+  displayScoreBoard() {
     this.ScoreBoard = document.createElement("h1");
     this.ScoreBoard.className = "title";
     this.ScoreBoard.id = "title";
@@ -10,9 +14,6 @@ class ScoreBoardHandler {
     this.playerNameGroup = document.createElement("div");
     this.playerNameGroup.className = "playerName";
     this.body.appendChild(this.playerNameGroup);
-  }
-
-  displayScoreBoard() {
     this.renderPlayers();
   }
 

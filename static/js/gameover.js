@@ -84,9 +84,11 @@ class GameOverHandler {
     
   }
   closeModal() {
-    const modal = document.getElementById('saveModal');
-    if (modal) {
-        document.body.removeChild(modal);
-    }
+    document.getElementById("saveModal").remove();
+    document.getElementById("scoreCounter").remove();
+    document.getElementById("game-container").remove();
+    document.getElementById("game-over").remove();
+    this.game.main.renderMain();
+    this.game.audio.stop();
   }
 }

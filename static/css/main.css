@@ -38,6 +38,9 @@ body {
   text-align: center;
   font-family: 'Press Start 2P';
 }
+#slider {
+
+}
 #player {
   width: 40px;
   /*border: 2px solid red;
@@ -109,5 +112,53 @@ body {
   color: black(1, 1, 96);
   font-family: 'Press Start 2P';
   font-size: 10px;
+}
+#slider {
+  -webkit-appearance: none;
+  width: 75%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+#sliderContainer {
+  text-align: center;
+}
+
+#slider:hover {
+  opacity: 1;
+}
+
+#slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+#slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+#AsteroidFrequency {
+  color: #04AA6D;
+  -webkit-text-stroke: 1px white;
+  font-family: "Press Start 2P";
+}
+#back {
+  color: white;
+  font-family: "Press Start 2P";
+  font-size: 15px;
+  background-color: #04AA6D; 
+}
+#back:hover {
+  cursor: pointer;
+  background-color: #3e8e41;
 }
 

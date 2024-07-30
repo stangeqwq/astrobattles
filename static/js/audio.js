@@ -23,4 +23,10 @@ class AudioHandler {
   playScore() {
     this.score.play();
   }
+  stop() {
+    this.gameOver.pause();
+    this.space.pause();
+    this.space.currentTime = 0;
+    this.gameOver.currentTime = 0;
+  }
 }

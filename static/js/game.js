@@ -1,5 +1,6 @@
 class Game {
-  constructor() {
+  constructor(Main) {
+    this.main = Main;
     this.body = document.getElementById("body");
     this.audio = new AudioHandler();
     this.player = new Player(this);

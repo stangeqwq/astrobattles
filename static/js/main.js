@@ -1,26 +1,64 @@
-function Play() {
-  document.getElementById("homemenu").remove();
-  document.getElementById("title").remove();
-  document.getElementById("creator").remove();
+class Main {
+  constructor() {
+    this.settingsHandler = new SettingsHandler(this);
+    this.scoreBoardRender = new ScoreBoardHandler(this);
+    document.getElementById("play").onclick = () => this.Play();
+    document.getElementById("settings").onclick = () => this.Settings();
+    document.getElementById("scoreboard").onclick = () => this.Scoreboard();
+  }
+  Play() {
+    this.game = new Game(this);
+    document.getElementById("homemenu").remove();
+    document.getElementById("title").remove();
+    document.getElementById("creator").remove();
+    this.game.init();
+    this.game.start();
+  }
 
-  const game = new Game();
-  game.init();
-  game.start();
-}
+  Settings() {
+    document.getElementById("homemenu").remove();
+    document.getElementById("title").remove();
+    document.getElementById("creator").remove();
+    this.settingsHandler.displaySettings();
+  }
 
-function Settings() {
-  document.getElementById("homemenu").remove();
-  const comingSoon = document.createElement("div");
-  comingSoon.innerText = "Coming Soon!";
-  comingSoon.setAttribute("id", "soon");
-  const body = document.getElementById("body");
-  body.appendChild(comingSoon);
-}
+  Scoreboard() {
+    document.getElementById("homemenu").remove();
+    document.getElementById("title").remove();
+    document.getElementById("creator").remove();
+    this.scoreBoardRender.displayScoreBoard();
+  }
 
-function Scoreboard() {
-  document.getElementById("homemenu").remove();
-  document.getElementById("title").remove();
-  document.getElementById("creator").remove();
-  const scoreBoardRender = new ScoreBoardHandler();
-  scoreBoardRender.displayScoreBoard();
+  renderMain() {
+    const body = document.getElementById("body");
+    const title = document.createElement("h1");
+    const creator = document.createElement("h2");
+    creator.className = "creator";
+    creator.id = "creator";
+    creator.innerText = "coded by Eric Joshua Stangeland";
+    title.className = "title";
+    title.id = "title";
+    title.innerText = "Astrobattles";
+    const homemenu = document.createElement("div");
+    homemenu.id = "homemenu";
+    homemenu.className = "buttonGroup";
+    const playButton = document.createElement("button");
+    const settingsButton = document.createElement("button");
+    const scoreboardButton = document.createElement("button");
+    playButton.id = "play";
+    settingsButton.id = "settings";
+    scoreboardButton.id = "scoreboard";
+    playButton.innerText = "Play";
+    settingsButton.innerText = "Settings";
+    scoreboardButton.innerText = "Scoreboard";
+    body.appendChild(title);
+    body.appendChild(homemenu);
+    homemenu.appendChild(playButton);
+    homemenu.appendChild(settingsButton);
+    homemenu.appendChild(scoreboardButton);
+    body.appendChild(creator);
+    document.getElementById("play").onclick = () => this.Play();
+    document.getElementById("settings").onclick = () => this.Settings();
+    document.getElementById("scoreboard").onclick = () => this.Scoreboard();
+  }
 }

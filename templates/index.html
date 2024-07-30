@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <title>Astrobattles</title>
-  <link rel="stylesheet" href="/static/css/main.css">
-  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-</head>
-<body id="body">
-<h1 class="title" id="title">Astrobattles</h1>
-<div class="buttonGroup" id="homemenu">
-    <button onclick="Play()">Play</button>
-    <button onclick="Settings()">Settings</button>
-    <button onclick="Scoreboard()">Scoreboard</button>
-</div>
-<h2 class="creator" id="creator"> coded by Eric Joshua Stangeland</h2>
-</body>
-<script src="/static/js/audio.js"></script>
-<script src="/static/js/player.js"></script>
-<script src="/static/js/bullet.js"></script>
-<script src="/static/js/game.js"></script>
-<script src="/static/js/main.js"></script>
-<script src="/static/js/asteroid.js"></script>
-<script src="/static/js/gameover.js"></script>
-<script src="/static/js/scoreboard.js"></script>
+<html lang="en">
+  <head>
+    <title>Astrobattles</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+  </head>
+  <body id="body">
+    <h1 class="title" id="title">Astrobattles</h1>
+
+    <div class="buttonGroup" id="homemenu">
+      <button id="play">Play</button>
+      <button id="settings">Settings</button>
+      <button id="scoreboard">Scoreboard</button>
+    </div>
+    <h2 class="creator" id="creator">coded by Eric Joshua Stangeland</h2>
+    <script src="/static/js/audio.js"></script>
+    <script src="/static/js/player.js"></script>
+    <script src="/static/js/bullet.js"></script>
+    <script src="/static/js/game.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/asteroid.js"></script>
+    <script src="/static/js/gameover.js"></script>
+    <script src="/static/js/scoreboard.js"></script>
+    <script src="/static/js/settings.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const main = new Main();
+      });
+    </script>
+  </body>
 </html>
