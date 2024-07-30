@@ -5,6 +5,10 @@ class ScoreBoardHandler {
   }
 
   displayScoreBoard() {
+    this.backButton = document.createElement("button");
+    this.backButton.id = "back";
+    this.backButton.innerText = "back";
+    this.backButton.onclick = () => this.closeScoreBoard();
     this.ScoreBoard = document.createElement("h1");
     this.ScoreBoard.className = "title";
     this.ScoreBoard.id = "title";
@@ -12,9 +16,11 @@ class ScoreBoardHandler {
     this.body.appendChild(this.ScoreBoard);
 
     this.playerNameGroup = document.createElement("div");
+    this.playerNameGroup.id = "playerNameGroup";
     this.playerNameGroup.className = "playerName";
     this.body.appendChild(this.playerNameGroup);
     this.renderPlayers();
+    this.body.appendChild(this.backButton);
   }
 
   async fetchPlayer(rank) {
@@ -49,5 +55,12 @@ class ScoreBoardHandler {
       playerName.innerText = `${r}. ${name} | Score: ${score}`;
       this.playerNameGroup.appendChild(playerName);
     }
+  }
+
+  closeScoreBoard() {
+    document.getElementById("playerNameGroup").remove();
+    document.getElementById("title").remove();
+    document.getElementById("back").remove();
+    this.main.renderMain();
   }
 }

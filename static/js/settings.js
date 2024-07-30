@@ -2,7 +2,7 @@ class SettingsHandler {
     constructor(Main) {
       this.body = document.getElementById("body");
       this.main = Main;
-
+      this.asteroidFrequency = 50;
     }
     displaySettings() {
         this.backButton = document.createElement("button");
@@ -32,10 +32,11 @@ class SettingsHandler {
         // display the current asteroid frequency
         this.freq = document.createElement("p");
         this.freq.id = "AsteroidFrequency";
-        this.freq.innerText = "50";
+        this.freq.innerText = this.asteroidFrequency;
         this.body.append(this.freq);
         this.slider.oninput = () => {
             this.freq.innerText = this.slider.value;
+            this.asteroidFrequency = this.slider.value;
         };
 
         this.body.append(this.backButton);

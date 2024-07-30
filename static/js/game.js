@@ -11,6 +11,7 @@ class Game {
     this.numAsteroids = 1;
     this.isGameOver = false;
     this.scorepoints = 0;
+    this.asteroidFrequency = this.main.settingsHandler.asteroidFrequency;
   }
 
   init() {
@@ -107,7 +108,7 @@ class Game {
   }
 
   scheduleRandomAsteroid() {
-    const randomTime = Math.random() * (2000 - 1000) + 200; // Random time between 1 and 5 seconds
+    const randomTime = (1 / this.asteroidFrequency) * Math.random() * (2000 - 1000) + 200; // Random time between 1 and 5 seconds
     return randomTime;
   }
 
