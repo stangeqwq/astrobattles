@@ -1,5 +1,5 @@
 # Astrobattles
-This is a 2D shooter website game with the objective of avoiding asteroids and shooting as many as possible of them. It uses the `P3`-stack (Python, postgreSQL, and progessive web technologies). The game coded requires only 1 page reload and in this sense, it is a personal primitive 2D game engine.
+This is a 2D shooter website game with the objective of avoiding asteroids and shooting as many as possible of them. It uses the `P3`-stack (Python, postgreSQL, and progessive web technologies). It is a personal primitive 2D game engine.
 # Features
 - shooting bullets from spacecraft
 - rotation and forward movement of spacecraft
